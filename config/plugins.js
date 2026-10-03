@@ -1,1 +1,24 @@
-module.exports = () => ({});
+
+module.exports = ({ env }) => ({
+  email: {
+    config: {
+      provider: 'nodemailer',
+
+      providerOptions: {
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+
+        auth: {
+          user: env('GMAIL_USER'),
+          pass: env('GMAIL_PASSWORD'),
+        },
+      },
+
+      settings: {
+        defaultFrom: env('GMAIL_USER'),
+        defaultReplyTo: env('GMAIL_USER'),
+      },
+    },
+  },
+});
